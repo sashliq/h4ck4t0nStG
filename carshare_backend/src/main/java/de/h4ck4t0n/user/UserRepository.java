@@ -1,6 +1,5 @@
-package de.h4ck4t0n.repositories;
+package de.h4ck4t0n.user;
 
-import de.h4ck4t0n.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

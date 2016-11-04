@@ -1,7 +1,5 @@
-package de.h4ck4t0n.rest;
+package de.h4ck4t0n.user;
 
-import de.h4ck4t0n.entities.User;
-import de.h4ck4t0n.repositories.UserRepository;
 import org.jsondoc.core.annotation.Api;
 import org.jsondoc.core.annotation.ApiAuthNone;
 import org.jsondoc.core.annotation.ApiVersion;
