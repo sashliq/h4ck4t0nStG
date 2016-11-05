@@ -1,5 +1,6 @@
 import * as types from '../constants/ActionTypes';
 import {buildPath} from '../utils/path.js';
+import * as ActionFactory from '../actions/ActionFactory';
 
 export function fetchOffers() {
     return (dispatch, getState) => {
