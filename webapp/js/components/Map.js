@@ -52,8 +52,8 @@ export default class Map extends Component {
         showsUserLocation={true}
         followsUserLocation={true}
         initialRegion={{
-          latitude: 37.78825,
-          longitude: -122.4324,
+          latitude: 48.781839,
+          longitude: 9.177895,
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}

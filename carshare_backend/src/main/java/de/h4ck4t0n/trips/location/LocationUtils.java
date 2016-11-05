@@ -6,7 +6,7 @@ import java.util.Random;
  * created by: saschabast
  * since: 05/11/2016
  */
-public  class LocationUtils {
+public class LocationUtils {
 
     public static Location getRandomLocation(double x0, double y0, int radiusInMeters) {
         Random random = new Random();
@@ -24,8 +24,8 @@ public  class LocationUtils {
         // Adjust the x-coordinate for the shrinking of the east-west distances
         double new_x = x / Math.cos(y0);
 
-        double longitude = new_x + x0;
-        double latitude = y + y0;
-        return new Location(latitude,longitude);
+        double latitude = new_x + x0;
+        double longitude = y + y0;
+        return new Location(latitude, longitude);
     }
 }
