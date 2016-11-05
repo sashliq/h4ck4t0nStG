@@ -1,5 +1,6 @@
 package de.h4ck4t0n.trips.request;
 
+import de.h4ck4t0n.trips.AbstractTrip;
 import de.h4ck4t0n.trips.location.Location;
 import de.h4ck4t0n.user.User;
 
@@ -14,12 +15,11 @@ import javax.persistence.OneToOne;
  */
 @Entity
 @DiscriminatorValue("TRIP_REQUEST")
-public class TripRequest {
+public class TripRequest extends AbstractTrip{
 
 
     @ManyToOne
     private User owner;
-
 
     @OneToOne
     private Location fromLocation;

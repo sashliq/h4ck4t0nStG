@@ -25,7 +25,7 @@ public class AbstractTrip {
     @JsonIgnore
     private final Date createdOn;
 
-    public AbstractTrip(final Date createdOn) {
-        this.createdOn = createdOn;
+    public AbstractTrip() {
+        this.createdOn = new Date();
     }
 }

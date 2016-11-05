@@ -5,8 +5,13 @@ import org.jsondoc.core.annotation.ApiAuthNone;
 import org.jsondoc.core.annotation.ApiVersion;
 import org.jsondoc.core.pojo.ApiStage;
 import org.jsondoc.core.pojo.ApiVisibility;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * created by: saschabast
@@ -18,4 +23,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/trip-offers")
 public class TripOfferRestRepository {
+
+    @Autowired
+    private TripOfferRepository tripOfferRepository;
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public List<TripOffer> getRequests() {
+        return tripOfferRepository.findAll();
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public void saveRequest(@RequestBody final TripOffer request) {
+        tripOfferRepository.save(request);
+    }
 }

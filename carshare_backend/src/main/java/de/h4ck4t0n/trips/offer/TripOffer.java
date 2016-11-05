@@ -11,11 +11,14 @@ import javax.persistence.*;
  */
 @Entity
 @DiscriminatorValue("TRIP_OFFER")
-public class TripOffer extends AbstractTrip {
+public  class TripOffer extends AbstractTrip {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonIgnore
     private Long id;
+
+    public TripOffer() {
+    }
 }
