@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import MapView from 'react-native-maps';
 import { StyleSheet, View } from 'react-native';
-
-import { createOffer } from '../actions/TripOffers.js';
+import * as ActionFactory from '../actions/ActionFactory';
 
 const styles = StyleSheet.create({
   map: {
@@ -22,7 +21,7 @@ export default class Map extends Component {
     const destination = e.nativeEvent.coordinate;
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        dispatch(createOffer(position, destination));
+        dispatch(ActionFactory.createOffer(position, destination));
       }
     )
   }
