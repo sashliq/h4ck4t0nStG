@@ -3,7 +3,7 @@ import * as types from '../constants/ActionTypes';
 
 const initialState = {
   offers: []
-}
+};
 
 function tripOffers(state = initialState, action) {
   switch (action.type) {
@@ -24,6 +24,6 @@ function tripOffers(state = initialState, action) {
 const rootReducer = combineReducers({
   tripOffers,
   initialState
-})
+});
 
 export default rootReducer
