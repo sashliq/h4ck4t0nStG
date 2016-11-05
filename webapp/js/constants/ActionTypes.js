@@ -1,2 +1,3 @@
 export const REQUEST_OFFERS = 'REQUEST_OFFERS';
 export const RECEIVE_OFFERS = 'RECEIVE_OFFERS';
+export const CREATE_OFFER = 'CREATE_OFFER';
