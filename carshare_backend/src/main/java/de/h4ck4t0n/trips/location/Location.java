@@ -23,6 +23,8 @@ public class Location {
 
     private double latitude;
 
+    private int rangeInMeters;
+
     public Location() {
     }
 
@@ -45,5 +47,21 @@ public class Location {
 
     public double getLatitude() {
         return latitude;
+    }
+
+    public void setLongtitude(final double longtitude) {
+        this.longtitude = longtitude;
+    }
+
+    public void setLatitude(final double latitude) {
+        this.latitude = latitude;
+    }
+
+    public int getRangeInMeters() {
+        return rangeInMeters;
+    }
+
+    public void setRangeInMeters(final int rangeInMeters) {
+        this.rangeInMeters = rangeInMeters;
     }
 }

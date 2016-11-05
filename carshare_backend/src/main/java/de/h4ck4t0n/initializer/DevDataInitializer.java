@@ -57,7 +57,7 @@ public class DevDataInitializer {
         for (final Location curRequestLocation : requestLocations) {
 
             final TripRequest curTripRequest = new TripRequest();
-            curTripRequest.setDestination(curRequestLocation);
+            curTripRequest.setEndLocation(curRequestLocation);
             final User owner = new User();
             owner.setFirstName(fairy.person().firstName());
             owner.setLastName(fairy.person().lastName());
@@ -75,7 +75,7 @@ public class DevDataInitializer {
         Fairy fairy = Fairy.create();
         for (final Location curLocation : locations) {
             final TripOffer curTripOffer = new TripOffer();
-            curTripOffer.setDestination(curLocation);
+            curTripOffer.setEndLocation(curLocation);
             final User owner = new User();
             owner.setFirstName(fairy.person().firstName());
             owner.setLastName(fairy.person().lastName());

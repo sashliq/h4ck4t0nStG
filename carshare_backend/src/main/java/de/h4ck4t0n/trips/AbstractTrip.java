@@ -23,7 +23,10 @@ public class AbstractTrip {
     private User owner;
 
     @OneToOne
-    private  Location destination;
+    private  Location endLocation;
+
+    @OneToOne
+    private  Location startLocation;
 
     @JsonIgnore
     private final Date createdOn;
@@ -36,19 +39,27 @@ public class AbstractTrip {
         this.owner = owner;
     }
 
-    public void setDestination(final Location destination) {
-        this.destination = destination;
+    public void setEndLocation(final Location endLocation) {
+        this.endLocation = endLocation;
     }
 
     public User getOwner() {
         return owner;
     }
 
-    public Location getDestination() {
-        return destination;
+    public Location getEndLocation() {
+        return endLocation;
     }
 
     public Date getCreatedOn() {
         return createdOn;
+    }
+
+    public Location getStartLocation() {
+        return startLocation;
+    }
+
+    public void setStartLocation(final Location startLocation) {
+        this.startLocation = startLocation;
     }
 }

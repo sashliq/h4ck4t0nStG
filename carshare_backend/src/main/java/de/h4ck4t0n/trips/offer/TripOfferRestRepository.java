@@ -1,6 +1,8 @@
 package de.h4ck4t0n.trips.offer;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.h4ck4t0n.trips.TripDistance;
+import de.h4ck4t0n.trips.location.Location;
 import org.jsondoc.core.annotation.Api;
 import org.jsondoc.core.annotation.ApiAuthNone;
 import org.jsondoc.core.annotation.ApiMethod;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -27,7 +30,6 @@ public class TripOfferRestRepository {
 
     @Autowired
     private TripService tripService;
-
 
     @Autowired
     private TripOfferRepository tripOfferRepository;
@@ -52,6 +54,49 @@ public class TripOfferRestRepository {
     )
     public List<TripDistance> getTripOffers(@PathVariable double longitude, @PathVariable double latitude) {
         return tripService.getNearestTrips(tripOfferRepository.findAll(), longitude, latitude);
+    }
+
+    @RequestMapping(value = "/{startLocation:.+}/{destination:.+}", method = RequestMethod.GET)
+    @ApiMethod(
+            path = "/location/destination",
+            verb = ApiVerb.POST,
+            description = "gives you the trips depending on startLocation(Location) and destination(Location)",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            responsestatuscode = "200"
+    )
+    public List<TripDistance> getTripOffersLocationDestination(@PathVariable String startLocation, @PathVariable String destination) {
+        final ObjectMapper mapper = new ObjectMapper();
+        try {
+            final Location startLocationObj = mapper.readValue(startLocation, Location.class);
+            final Location endLocationObj = mapper.readValue(destination, Location.class);
+            final List<TripDistance> result = tripService.getFilteredByStartLocationAndDestination(startLocationObj, endLocationObj);
+            return result;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @RequestMapping(value = "/{startLocation:.+}", method = RequestMethod.GET)
+    @ApiMethod(
+            path = "/location/destination",
+            verb = ApiVerb.POST,
+            description = "gives you the trips depending on startLocation(Location)",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            responsestatuscode = "200"
+    )
+    public List<TripDistance> getTripOffersLocationDestination(@PathVariable String startLocation) {
+        final ObjectMapper mapper = new ObjectMapper();
+        try {
+            final Location startLocationObj = mapper.readValue(startLocation, Location.class);
+            final List<TripDistance> result = tripService.getFilteredByLocation(tripOfferRepository.findAll(), startLocationObj);
+            return result;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

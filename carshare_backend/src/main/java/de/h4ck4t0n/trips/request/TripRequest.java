@@ -16,7 +16,7 @@ import javax.persistence.OneToOne;
 public class TripRequest extends AbstractTrip{
 
     @OneToOne
-    private Location location;
+    private Location startLocation;
 
     //radius in meter
     private int radius;
@@ -24,4 +24,7 @@ public class TripRequest extends AbstractTrip{
     public TripRequest() {
     }
 
+    public Location getStartLocation() {
+        return startLocation;
+    }
 }
