@@ -3808,7 +3808,11 @@ react-deep-force-update@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-deep-force-update/-/react-deep-force-update-1.0.1.tgz#f911b5be1d2a6fe387507dd6e9a767aa2924b4c7"
 
-react-native:
+react-native-maps@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.11.0.tgz#8baa56eef83e9f2f04a70b192624b7bc9c56289d"
+
+react-native@^0.36.1:
   version "0.36.1"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.36.1.tgz#f7f53e28cb1f10d656dd26f666f795bdb9d11a94"
   dependencies:
@@ -3884,10 +3888,6 @@ react-native:
     yeoman-environment "1.5.3"
     yeoman-generator "0.21.2"
 
-react-native-maps:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.11.0.tgz#8baa56eef83e9f2f04a70b192624b7bc9c56289d"
-
 react-proxy@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/react-proxy/-/react-proxy-1.1.8.tgz#9dbfd9d927528c3aa9f444e4558c37830ab8c26a"
@@ -3895,7 +3895,7 @@ react-proxy@^1.1.7:
     lodash "^4.6.1"
     react-deep-force-update "^1.0.0"
 
-react-redux:
+react-redux@^4.4.5:
   version "4.4.5"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-4.4.5.tgz#f509a2981be2252d10c629ef7c559347a4aec457"
   dependencies:
@@ -3919,7 +3919,7 @@ react-transform-hmr@^1.0.4:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react@15.3.2:
+react@^15.3.2:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.3.2.tgz#a7bccd2fee8af126b0317e222c28d1d54528d09e"
   dependencies:
@@ -4037,7 +4037,7 @@ redeyed@~1.0.0:
   dependencies:
     esprima "~3.0.0"
 
-redux:
+redux@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/redux/-/redux-3.6.0.tgz#887c2b3d0b9bd86eca2be70571c27654c19e188d"
   dependencies:
@@ -4893,7 +4893,7 @@ whatwg-encoding@^1.0.1:
   dependencies:
     iconv-lite "0.4.13"
 
-whatwg-fetch, whatwg-fetch@^1.0.0, whatwg-fetch@>=0.10.0:
+whatwg-fetch@^1.0.0, whatwg-fetch@>=0.10.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-1.0.0.tgz#01c2ac4df40e236aaa18480e3be74bd5c8eb798e"
 
