@@ -2,10 +2,13 @@ package de.h4ck4t0n.car;
 
 import org.jsondoc.core.annotation.Api;
 import org.jsondoc.core.annotation.ApiAuthNone;
+import org.jsondoc.core.annotation.ApiMethod;
 import org.jsondoc.core.annotation.ApiVersion;
 import org.jsondoc.core.pojo.ApiStage;
+import org.jsondoc.core.pojo.ApiVerb;
 import org.jsondoc.core.pojo.ApiVisibility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,7 +32,16 @@ public class CarRestRepository {
 
 
     @RequestMapping(value = "/{longitude:.+}/{latitude:.+}", method = RequestMethod.GET)
-    public List<CarDistance> getByLangitudeAndLongitude(@PathVariable double longitude, @PathVariable double latitude) {
+    @ApiMethod(
+            path = "/longitude/latitude",
+            verb = ApiVerb.POST,
+            description = "gives you the 10 nearest cars by your actual longitude and latitude",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            responsestatuscode = "200"
+    )
+    public List<CarDistance> getByLangtitudeAndLongitude(@PathVariable double longitude, @PathVariable double latitude) {
         return carService.getVehicles(longitude, latitude);
     }
+
+
 }
