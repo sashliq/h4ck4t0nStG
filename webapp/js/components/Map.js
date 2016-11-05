@@ -5,17 +5,8 @@ import { StyleSheet, View } from 'react-native';
 import { createOffer } from '../actions/TripOffers.js';
 
 const styles = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-  },
   map: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    flex: 1
   },
 });
 
@@ -45,23 +36,20 @@ export default class Map extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <MapView
-        style={styles.map}
-        onLongPress={this.onMapLongPress}
-        showsUserLocation={true}
-        followsUserLocation={true}
-        initialRegion={{
-          latitude: 48.781839,
-          longitude: 9.177895,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-        >
-        {this.props.markers.map(this.renderMarker)}
-        </MapView>
-      </ View>
-
+      <MapView
+      style={styles.map}
+      onLongPress={this.onMapLongPress}
+      showsUserLocation={true}
+      followsUserLocation={true}
+      initialRegion={{
+        latitude: 48.781839,
+        longitude: 9.177895,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }}
+      >
+      {this.props.markers.map(this.renderMarker)}
+      </MapView>
     );
   }
 }
