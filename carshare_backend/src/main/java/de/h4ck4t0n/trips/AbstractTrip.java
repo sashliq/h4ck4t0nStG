@@ -19,14 +19,14 @@ public class AbstractTrip {
     @JsonIgnore
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private User owner;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private  Location endLocation;
 
-    @OneToOne
-    private  Location startLocation;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private Location startLocation;
 
     @JsonIgnore
     private final Date createdOn;

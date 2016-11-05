@@ -19,7 +19,7 @@ public  class TripOffer extends AbstractTrip {
     @JsonIgnore
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Car car;
 
     public TripOffer() {
