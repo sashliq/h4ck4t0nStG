@@ -34,7 +34,9 @@ public class Location {
     public double getDistanceTo(Location l) {
         double lo = l.getLongtitude();
         double la = l.getLatitude();
-        return Math.sqrt((latitude - la) * (latitude - la) + (longtitude - lo) * (longtitude - lo));
+        double dx = 111.3 * (latitude - la);
+        double dy = 71.5 * (longtitude - lo);
+        return Math.sqrt(dx * dx + dy * dy);
     }
 
     public double getLongtitude() {

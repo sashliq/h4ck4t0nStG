@@ -28,7 +28,7 @@ public class CarRestRepository {
     private CarService carService;
 
 
-    @RequestMapping(value = "/{longitude}/{latitude}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{longitude:.+}/{latitude:.+}", method = RequestMethod.GET)
     public List<CarDistance> getByLangitudeAndLongitude(@PathVariable double longitude, @PathVariable double latitude) {
         return carService.getVehicles(longitude, latitude);
     }
