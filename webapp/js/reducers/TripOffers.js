@@ -22,8 +22,7 @@ function tripOffers(state = initialState, action) {
 }
 
 const rootReducer = combineReducers({
-  tripOffers,
-  initialState
+  tripOffers
 });
 
 export default rootReducer
