@@ -19,7 +19,12 @@ export default class Map extends Component {
 
   onMapLongPress(e) {
     const { dispatch } = this.props;
-    dispatch(createOffer(e.nativeEvent.coordinate));
+    const destination = e.nativeEvent.coordinate;
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        dispatch(createOffer(position, destination));
+      }
+    )
   }
 
   renderMarker(marker) {
