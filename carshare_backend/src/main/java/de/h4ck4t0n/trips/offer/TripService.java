@@ -34,8 +34,14 @@ public class TripService {
         return result;
     }
 
-    public List<TripDistance> getFilteredByStartLocationAndDestination(final Location startLocation, final Location destination) {
-        return new ArrayList<>();
+    public List<TripDistance> getFilteredByStartLocationAndDestination(final List<? extends AbstractTrip> trips, final Location startLocation, final Location endLocation) {
+        final List<TripDistance> filterdByStart = getFilteredByLocation(trips, startLocation);
+        final List<AbstractTrip> filterdByStartTrips = new ArrayList<>();
+
+        for (final TripDistance curTripDistance : filterdByStart) {
+            filterdByStartTrips.add(curTripDistance.getTrip());
+        }
+        return getFilteredByLocation(filterdByStartTrips, endLocation);
     }
 
     public List<TripDistance> getFilteredByLocation(final List<? extends AbstractTrip> allTrips, final Location startLocation) {

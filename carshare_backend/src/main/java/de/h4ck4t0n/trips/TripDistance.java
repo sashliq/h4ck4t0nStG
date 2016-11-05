@@ -21,4 +21,8 @@ public class TripDistance implements Comparable<TripDistance>{
     public Double getDistance() {
         return distance;
     }
+
+    public AbstractTrip getTrip() {
+        return trip;
+    }
 }

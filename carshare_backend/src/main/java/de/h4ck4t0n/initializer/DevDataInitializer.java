@@ -56,8 +56,10 @@ public class DevDataInitializer {
         Fairy fairy = Fairy.create();
         for (final Location curRequestLocation : requestLocations) {
 
+            final List<Location> randomStartLocation = getRandomLocations(1, 5000);
             final TripRequest curTripRequest = new TripRequest();
             curTripRequest.setEndLocation(curRequestLocation);
+            curTripRequest.setStartLocation(randomStartLocation.get(0));
             final User owner = new User();
             owner.setFirstName(fairy.person().firstName());
             owner.setLastName(fairy.person().lastName());
@@ -74,8 +76,10 @@ public class DevDataInitializer {
     private void buildTestTripOffers(final List<Location> locations) {
         Fairy fairy = Fairy.create();
         for (final Location curLocation : locations) {
+            final List<Location> randomStartLocation = getRandomLocations(1, 5000);
             final TripOffer curTripOffer = new TripOffer();
             curTripOffer.setEndLocation(curLocation);
+            curTripOffer.setStartLocation(randomStartLocation.get(0));
             final User owner = new User();
             owner.setFirstName(fairy.person().firstName());
             owner.setLastName(fairy.person().lastName());
@@ -89,11 +93,11 @@ public class DevDataInitializer {
         }
     }
 
-    public List<Location> getRandomLocations(final int numberOfLocations, final int radius) {
+    public List<Location> getRandomLocations(final int numberOfLocations, final int radiusInMeters) {
         final List<Location> result = new ArrayList<>();
         int i = 0;
         while (i <= numberOfLocations) {
-            final Location randomLocation = LocationUtils.getRandomLocation(CENTER_LATITUDE, CENTER_LONGITUDE, radius);
+            final Location randomLocation = LocationUtils.getRandomLocation(CENTER_LATITUDE, CENTER_LONGITUDE, radiusInMeters);
             locationRepository.save(randomLocation);
             result.add(randomLocation);
             i++;

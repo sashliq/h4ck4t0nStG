@@ -43,33 +43,34 @@ public class TripOfferRestRepository {
     public void saveRequest(@RequestBody final TripOffer request) {
         tripOfferRepository.save(request);
     }
+//
+//    @RequestMapping(value = "/{longitude:.+}/{latitude:.+}", method = RequestMethod.GET)
+//    @ApiMethod(
+//            path = "/longitude/latitude",
+//            verb = ApiVerb.POST,
+//            description = "gives you the 10 nearest trip by your actual longitude and latitude",
+//            consumes = {MediaType.APPLICATION_JSON_VALUE},
+//            responsestatuscode = "200"
+//    )
+//    public List<TripDistance> getTripOffers(@PathVariable double longitude, @PathVariable double latitude) {
+//        return tripService.getNearestTrips(tripOfferRepository.findAll(), longitude, latitude);
+//    }
 
-    @RequestMapping(value = "/{longitude:.+}/{latitude:.+}", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/{startLocation:.+}/{endLocation:.+}", method = RequestMethod.GET)
     @ApiMethod(
-            path = "/longitude/latitude",
+            path = "/startLocation/endLocation",
             verb = ApiVerb.POST,
-            description = "gives you the 10 nearest trip by your actual longitude and latitude",
+            description = "gives you the trips depending on startLocation(Location) and endLocation(Location)",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             responsestatuscode = "200"
     )
-    public List<TripDistance> getTripOffers(@PathVariable double longitude, @PathVariable double latitude) {
-        return tripService.getNearestTrips(tripOfferRepository.findAll(), longitude, latitude);
-    }
-
-    @RequestMapping(value = "/{startLocation:.+}/{destination:.+}", method = RequestMethod.GET)
-    @ApiMethod(
-            path = "/location/destination",
-            verb = ApiVerb.POST,
-            description = "gives you the trips depending on startLocation(Location) and destination(Location)",
-            consumes = {MediaType.APPLICATION_JSON_VALUE},
-            responsestatuscode = "200"
-    )
-    public List<TripDistance> getTripOffersLocationDestination(@PathVariable String startLocation, @PathVariable String destination) {
+    public List<TripDistance> getTripOffersLocationDestination(@PathVariable String startLocation, @PathVariable String endLocation) {
         final ObjectMapper mapper = new ObjectMapper();
         try {
             final Location startLocationObj = mapper.readValue(startLocation, Location.class);
-            final Location endLocationObj = mapper.readValue(destination, Location.class);
-            final List<TripDistance> result = tripService.getFilteredByStartLocationAndDestination(startLocationObj, endLocationObj);
+            final Location endLocationObj = mapper.readValue(endLocation, Location.class);
+            final List<TripDistance> result = tripService.getFilteredByStartLocationAndDestination(tripOfferRepository.findAll(), startLocationObj, endLocationObj);
             return result;
         } catch (IOException e) {
             e.printStackTrace();
@@ -80,16 +81,36 @@ public class TripOfferRestRepository {
 
     @RequestMapping(value = "/{startLocation:.+}", method = RequestMethod.GET)
     @ApiMethod(
-            path = "/location/destination",
+            path = "/location/endLocation",
             verb = ApiVerb.POST,
             description = "gives you the trips depending on startLocation(Location)",
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             responsestatuscode = "200"
     )
-    public List<TripDistance> getTripOffersLocationDestination(@PathVariable String startLocation) {
+    public List<TripDistance> getTripOffersByStartLocation(@PathVariable String startLocation) {
+        final List<TripDistance> result = getTripDistancesFilterdByLocation(startLocation);
+        if (result != null) return result;
+        return null;
+    }
+
+    @RequestMapping(value = "/{endLocation:.+}", method = RequestMethod.GET)
+    @ApiMethod(
+            path = "/location/endLocation",
+            verb = ApiVerb.POST,
+            description = "gives you the trips depending on startLocation(Location)",
+            consumes = {MediaType.APPLICATION_JSON_VALUE},
+            responsestatuscode = "200"
+    )
+    public List<TripDistance> getTripOffersByEndlocation(@PathVariable String endLocation) {
+        final List<TripDistance> result = getTripDistancesFilterdByLocation(endLocation);
+        if (result != null) return result;
+        return null;
+    }
+
+    private List<TripDistance> getTripDistancesFilterdByLocation(final @PathVariable String endLocation) {
         final ObjectMapper mapper = new ObjectMapper();
         try {
-            final Location startLocationObj = mapper.readValue(startLocation, Location.class);
+            final Location startLocationObj = mapper.readValue(endLocation, Location.class);
             final List<TripDistance> result = tripService.getFilteredByLocation(tripOfferRepository.findAll(), startLocationObj);
             return result;
 
