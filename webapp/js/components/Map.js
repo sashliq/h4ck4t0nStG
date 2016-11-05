@@ -1,15 +1,10 @@
-import MapView from 'react-native-maps';
-
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
+import MapView from 'react-native-maps';
+import { StyleSheet, View } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+    ...StyleSheet.absoluteFillObject,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
@@ -22,16 +17,17 @@ const styles = StyleSheet.create({
   },
 });
 
-class Home extends Component {
+export default class Map extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
   }
 
   render() {
     return (
-      <MapView
-        style={ styles.map }
+      <View style={styles.container}>
+        <MapView
+        style={styles.map}
         showsUserLocation={true}
         followsUserLocation={true}
         initialRegion={{
@@ -40,10 +36,11 @@ class Home extends Component {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
-      />
+        >
+
+        </MapView>
+      </ View>
+
     );
   }
-
 }
-
-export default Home;

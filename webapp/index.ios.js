@@ -7,13 +7,13 @@
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
 
-import Home from './js/home.js';
+import Main from './js/main.js';
 
 export default class RideWithMe extends Component {
 
   render() {
     return (
-      <Home />
+      <Main />
     );
   }
 }
