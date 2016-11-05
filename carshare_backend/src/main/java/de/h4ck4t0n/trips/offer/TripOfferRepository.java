@@ -1,4 +1,4 @@
-package de.h4ck4t0n.entries.request;
+package de.h4ck4t0n.trips.offer;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -6,6 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * created by: saschabast
  * since: 05/11/2016
  */
-public interface RequestRepository extends JpaRepository<Request, Long> {
-
+public interface TripOfferRepository extends JpaRepository<TripOffer,Long> {
 }

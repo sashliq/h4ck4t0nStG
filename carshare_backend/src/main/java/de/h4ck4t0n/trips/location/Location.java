@@ -1,4 +1,4 @@
-package de.h4ck4t0n.entries.location;
+package de.h4ck4t0n.trips.location;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

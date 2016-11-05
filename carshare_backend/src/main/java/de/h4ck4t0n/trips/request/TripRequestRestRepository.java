@@ -1,4 +1,4 @@
-package de.h4ck4t0n.entries.request;
+package de.h4ck4t0n.trips.request;
 
 import org.jsondoc.core.annotation.Api;
 import org.jsondoc.core.annotation.ApiAuthNone;
@@ -18,23 +18,23 @@ import java.util.List;
  * since: 05/11/2016
  */
 
-@Api(name = "request services", description = "Methods for managing requests", group = "entries", visibility = ApiVisibility.PUBLIC, stage = ApiStage.RC)
+@Api(name = "trip request services", description = "methods for managing trip requests", group = "trips", visibility = ApiVisibility.PUBLIC, stage = ApiStage.RC)
 @ApiVersion(since = "1.0", until = "X")
 @ApiAuthNone
 @RestController
-@RequestMapping("/requests")
-public class RequestRestRepository {
+@RequestMapping("/trip-requests")
+public class TripRequestRestRepository {
 
     @Autowired
-    private RequestRepository requestRepository;
+    private TripRequestRepository tripRequestRepository;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<Request> getRequests() {
-        return requestRepository.findAll();
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public List<TripRequest> getRequests() {
+        return tripRequestRepository.findAll();
     }
 
-    @RequestMapping(value = "/save/", method = RequestMethod.POST)
-    public void saveRequest(@RequestBody final Request request) {
-         requestRepository.save(request);
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public void saveRequest(@RequestBody final TripRequest request) {
+         tripRequestRepository.save(request);
     }
 }

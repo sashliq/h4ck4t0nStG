@@ -26,7 +26,7 @@ public class UserRestConroller {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<User> save() {
         return userRepository.findAll();
     }
