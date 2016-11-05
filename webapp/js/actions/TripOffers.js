@@ -19,6 +19,15 @@ export function receiveOffers(entities) {
   }
 }
 
+export function createOffer(coordinate) {
+  return {
+    type: types.CREATE_OFFER,
+    offer: {
+      endLocation: coordinate
+    }
+  }
+}
+
 function requestOffers() {
   return {
     type: types.REQUEST_OFFERS

@@ -8,10 +8,6 @@ const propTypes = {
   offers: PropTypes.array.isRequired
 };
 
-const defaultProps = {
-  offers: []
-};
-
 class App extends Component {
 
   componentDidMount() {
@@ -21,16 +17,19 @@ class App extends Component {
 
   render() {
     return (
-      <Map />
+      <Map
+      dispatch={this.props.dispatch}
+      markers={this.props.offers}
+      />
     );
   }
 }
 
 App.propTypes = propTypes;
-App.defaultProps = defaultProps;
 
 function mapStateToProps(state) {
-  const { offers } = state;
+  const { tripOffers } = state;
+  const offers = tripOffers.offers;
   return {
     offers
   };

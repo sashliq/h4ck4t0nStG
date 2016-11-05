@@ -9,17 +9,21 @@ function tripOffers(state = initialState, action) {
   switch (action.type) {
     case types.RECEIVE_OFFERS:
       return Object.assign({}, state, {
-        offers: [...state.offers, ...action.entities]
+        offers: [...action.entities]
       });
       break;
+    case types.CREATE_OFFER:
+      return Object.assign({}, state, {
+        offers: [...state.offers, action.offer]
+      });
     default:
       return state
-
   }
 }
 
 const rootReducer = combineReducers({
-  tripOffers
+  tripOffers,
+  initialState
 })
 
 export default rootReducer
