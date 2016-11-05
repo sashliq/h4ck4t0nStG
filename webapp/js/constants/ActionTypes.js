@@ -1,6 +1,5 @@
 export const REQUEST_OFFERS = 'REQUEST_OFFERS';
 export const RECEIVE_OFFERS = 'RECEIVE_OFFERS';
 export const CREATE_OFFER = 'CREATE_OFFER';
-
 export const RECEIVE_USERS = 'RECEIVE_USERS';
-
+export const ADD_OFFER = 'ADD_OFFER';

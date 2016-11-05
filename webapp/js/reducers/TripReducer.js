@@ -11,10 +11,10 @@ export default function tripReducer(state = initialState, action) {
                 offers: [...action.entities]
             });
             break;
-        // case types.CREATE_OFFER:
-        //     return Object.assign({}, state, {
-        //         offers: [...state.offers, action.offer]
-        //     });
+        case types.ADD_OFFER:
+            return Object.assign({}, state, {
+                offers: [...state.offers, action.offer]
+            });
         case types.CREATE_OFFER:
             console.log("sending new offer to api");
             return state;

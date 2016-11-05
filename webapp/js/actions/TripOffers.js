@@ -8,30 +8,28 @@ export function fetchOffers() {
         return fetch(buildPath('trip-offers/'))
             .then(response => response.json())
             .then(json => dispatch(receiveOffers(json)));
-        // .catch(error => console.error(error));
     }
 }
 
-function createNewTripOffer(endCoordinates, startCoordinate={}) {
+function createNewTripOffer(start, destination) {
     return {
         "createdOn": {},
         "endLocation": {
-            "latitude": endCoordinates.latitude,
-            "longitude": endCoordinates.longitude,
+            "latitude": destination.latitude,
+            "longitude": destination.longitude,
             "rangeInMeters": 0
         },
         "startLocation": {
-            "latitude": 0,
-            "longitude": 0,
+            "latitude": start.latitude,
+            "longitude": start.longitude,
             "rangeInMeters": 0
         }
     }
 
 }
 
-export function createOffer(coordinate) {
+export function createOffer(start, destination) {
     return (dispatch, getState) => {
-        console.log(coordinate);
         dispatch(createOfferRequest());
         return fetch(buildPath('trip-offers/'), {
             method: 'POST',
@@ -39,13 +37,11 @@ export function createOffer(coordinate) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(createNewTripOffer(coordinate))
-        }).then((response) => {
-            dispatch(fetchOffers());
-            console.log(response)
-        }).catch((error)=> {
-            console.log(error)
+            body: JSON.stringify(createNewTripOffer(start, destination))
         })
+        .then(response => response.json())
+        .then(offer => dispatch(addOffer(offer)))
+        .catch(error => console.error(error));
     }
 }
 
@@ -55,15 +51,13 @@ export function receiveOffers(entities) {
         entities
     }
 }
-//
-// export function createOffer(coordinate) {
-//     return {
-//         type: types.CREATE_OFFER,
-//         offer: {
-//             endLocation: coordinate
-//         }
-//     }
-// }
+
+export function addOffer(offer) {
+  return {
+    type: types.ADD_OFFER,
+    offer
+  }
+}
 
 function requestOffers() {
     return {
