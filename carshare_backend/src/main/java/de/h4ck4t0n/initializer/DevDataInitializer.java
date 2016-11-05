@@ -43,7 +43,6 @@ public class DevDataInitializer {
 
     @Autowired
     private LocationRepository locationRepository;
-
     @PostConstruct
     private void init() {
         final List<Location> locations = getRandomLocations(10, 3000);
