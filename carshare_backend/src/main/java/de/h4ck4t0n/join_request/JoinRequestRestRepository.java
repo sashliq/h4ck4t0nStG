@@ -53,6 +53,7 @@ public class JoinRequestRestRepository {
             consumes = {MediaType.APPLICATION_JSON_VALUE},
             responsestatuscode = "200"
     )
+
     public List<JoinRequest> getJoinRequestsFromUser(@PathVariable Long userId) {
         final User user = userRepository.findOne(userId);
         return joinRequestRepository.findJoinRequestsSendFromUser(user);

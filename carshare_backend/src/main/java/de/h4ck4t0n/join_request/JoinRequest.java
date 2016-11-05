@@ -1,6 +1,5 @@
 package de.h4ck4t0n.join_request;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.h4ck4t0n.trips.AbstractTrip;
 import de.h4ck4t0n.trips.offer.TripOffer;
 import de.h4ck4t0n.user.User;
@@ -18,7 +17,6 @@ public class JoinRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
     private Long id;
 
     private Date createdOn;
@@ -51,5 +49,9 @@ public class JoinRequest {
 
     public void setTrip(final AbstractTrip trip) {
         this.trip = trip;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

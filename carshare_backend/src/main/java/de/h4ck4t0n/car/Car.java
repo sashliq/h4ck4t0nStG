@@ -1,6 +1,5 @@
 package de.h4ck4t0n.car;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import de.h4ck4t0n.trips.location.Location;
 
 import javax.persistence.*;
@@ -15,7 +14,6 @@ public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
     private Long id;
 
     @Size(max=4096)
@@ -54,5 +52,9 @@ public class Car {
 
     public void setLocation(final Location location) {
         this.location = location;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

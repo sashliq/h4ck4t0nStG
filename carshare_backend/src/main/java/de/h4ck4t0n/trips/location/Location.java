@@ -1,7 +1,5 @@
 package de.h4ck4t0n.trips.location;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,10 +14,9 @@ public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
     private Long id;
 
-    private double longtitude;
+    private double longitude;
 
     private double latitude;
 
@@ -30,27 +27,27 @@ public class Location {
 
     public Location(final double latitude, final double longitude) {
         this.latitude = latitude;
-        this.longtitude = longitude;
+        this.longitude = longitude;
     }
 
     public double getDistanceTo(Location l) {
-        double lo = l.getLongtitude();
+        double lo = l.getLongitude();
         double la = l.getLatitude();
         double dx = 111.3 * (latitude - la);
-        double dy = 71.5 * (longtitude - lo);
+        double dy = 71.5 * (longitude - lo);
         return Math.sqrt(dx * dx + dy * dy);
     }
 
-    public double getLongtitude() {
-        return longtitude;
+    public double getLongitude() {
+        return longitude;
     }
 
     public double getLatitude() {
         return latitude;
     }
 
-    public void setLongtitude(final double longtitude) {
-        this.longtitude = longtitude;
+    public void setLongitude(final double longitude) {
+        this.longitude = longitude;
     }
 
     public void setLatitude(final double latitude) {
@@ -63,5 +60,9 @@ public class Location {
 
     public void setRangeInMeters(final int rangeInMeters) {
         this.rangeInMeters = rangeInMeters;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
