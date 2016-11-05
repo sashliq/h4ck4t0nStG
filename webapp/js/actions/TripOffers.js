@@ -1,16 +1,6 @@
 import * as types from '../constants/ActionTypes';
 import {buildPath} from '../utils/path.js';
 
-export function fetchOffers() {
-    return (dispatch, getState) => {
-
-        dispatch(requestOffers());
-        return fetch(buildPath('trip-offers/'))
-            .then(response => response.json())
-            .then(json => dispatch(receiveOffers(json)));
-        // .catch(error => console.error(error));
-    }
-}
 
 function createNewTripOffer(endCoordinates, startCoordinate={}) {
     return {
@@ -49,12 +39,6 @@ export function createOffer(coordinate) {
     }
 }
 
-export function receiveOffers(entities) {
-    return {
-        type: types.RECEIVE_OFFERS,
-        entities
-    }
-}
 //
 // export function createOffer(coordinate) {
 //     return {
@@ -65,11 +49,6 @@ export function receiveOffers(entities) {
 //     }
 // }
 
-function requestOffers() {
-    return {
-        type: types.REQUEST_OFFERS
-    };
-}
 
 function createOfferRequest() {
     return {

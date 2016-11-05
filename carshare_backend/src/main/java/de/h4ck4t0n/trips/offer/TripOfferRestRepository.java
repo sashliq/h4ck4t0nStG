@@ -11,7 +11,9 @@ import org.jsondoc.core.pojo.ApiStage;
 import org.jsondoc.core.pojo.ApiVerb;
 import org.jsondoc.core.pojo.ApiVisibility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -40,8 +42,8 @@ public class TripOfferRestRepository {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public void saveRequest(@RequestBody final TripOffer request) {
-        tripOfferRepository.save(request);
+    public ResponseEntity<TripOffer> saveRequest(@RequestBody final TripOffer request) {
+       return new ResponseEntity<>(tripOfferRepository.save(request), HttpStatus.CREATED);
     }
 //
 //    @RequestMapping(value = "/{longitude:.+}/{latitude:.+}", method = RequestMethod.GET)

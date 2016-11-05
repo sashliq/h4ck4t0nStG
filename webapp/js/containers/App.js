@@ -5,6 +5,7 @@ import { View, StatusBar} from 'react-native';
 import NavBar from './NavBar.js';
 import Map from '../components/Map.js';
 import { fetchOffers } from '../actions/TripOffers.js';
+import *  as ActionFactory from '../actions/ActionFactory.js';
 
 const propTypes = {
   offers: PropTypes.array.isRequired
@@ -20,7 +21,8 @@ class App extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(fetchOffers());
+    dispatch(ActionFactory.fetchOffers());
+    dispatch(ActionFactory.fetchUsers());
   }
 
   render() {
