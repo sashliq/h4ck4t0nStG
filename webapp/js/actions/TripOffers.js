@@ -12,7 +12,7 @@ export function fetchOffers() {
     }
 }
 
-function createNewTripIffer(endCoordinates, startCoordinater) {
+function createNewTripOffer(endCoordinates, startCoordinate={}) {
     return {
         "createdOn": {},
         "endLocation": {
@@ -39,7 +39,7 @@ export function createOffer(coordinate) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(createNewTripOffer(endCoordinates, startCoordinates))
+            body: JSON.stringify(createNewTripOffer(coordinate))
         }).then((response) => {
             dispatch(fetchOffers());
             console.log(response)
