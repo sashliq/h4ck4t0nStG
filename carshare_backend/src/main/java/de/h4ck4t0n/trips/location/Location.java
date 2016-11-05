@@ -31,6 +31,12 @@ public class Location {
         this.longtitude = longitude;
     }
 
+    public double getDistanceTo(Location l) {
+        double lo = l.getLongtitude();
+        double la = l.getLatitude();
+        return Math.sqrt((latitude - la) * (latitude - la) + (longtitude - lo) * (longtitude - lo));
+    }
+
     public double getLongtitude() {
         return longtitude;
     }

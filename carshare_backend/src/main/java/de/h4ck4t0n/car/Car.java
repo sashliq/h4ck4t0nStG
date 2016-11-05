@@ -30,6 +30,8 @@ public class Car {
     public Car() {
     }
 
+
+
     public String getName() {
         return name;
     }
@@ -40,5 +42,17 @@ public class Car {
 
     public Location getLocation() {
         return location;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
+    }
+
+    public void setDescription(final String description) {
+        this.description = description;
+    }
+
+    public void setLocation(final Location location) {
+        this.location = location;
     }
 }
