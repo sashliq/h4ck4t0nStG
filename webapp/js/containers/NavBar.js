@@ -58,7 +58,7 @@ class NavBar extends Component {
           onPress={this.onPressButton}>
           <Text style={styles.buttonText}>{'FIND A RIDE'}</Text>
         </TouchableHighlight>
-        <DestinationInput />
+        <DestinationInput current={this.props.current} dispatch={this.props.dispatch}/>
       </View>
     );
   }
@@ -67,12 +67,14 @@ class NavBar extends Component {
 NavBar.propTypes = propTypes;
 
 function mapStateToProps(state) {
-  const { tripOffers } = state;
+  const { tripOffers, location} = state;
   const offers = tripOffers.offers;
-  const hasDestination = !! tripOffers.currentOffer;
+  const current = location.current;
+  const hasDestination = !!current;
   return {
     offers,
-    hasDestination
+    hasDestination,
+    current,
   };
 }
 

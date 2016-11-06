@@ -36,6 +36,7 @@ class App extends Component {
                     dispatch={this.props.dispatch}
                     markers={this.props.offers}
                     users={this.props.users}
+                    start={this.props.current}
                 />
                 <NavBar />
             </View>
@@ -46,13 +47,15 @@ class App extends Component {
 App.propTypes = propTypes;
 
 function mapStateToProps(state) {
-    const {tripOffers} = state;
+    const {tripOffers, location} = state;
     const {userReducer} = state;
     const offers = tripOffers.offers;
     const users = userReducer.users;
+    const current = location.current;
     return {
         offers,
-        users
+        users,
+        current,
     };
 }
 

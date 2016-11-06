@@ -13,10 +13,10 @@ export default class Map extends Component {
 
     constructor(props) {
         super(props);
-        this.onMapLongPress = this.onMapLongPress.bind(this);
+        this.onMapLongPress = this._onMapLongPress.bind(this);
     }
 
-    onMapLongPress(e) {
+    _onMapLongPress(e) {
         const {dispatch} = this.props;
         const destination = e.nativeEvent.coordinate;
         navigator.geolocation.getCurrentPosition(
@@ -39,15 +39,16 @@ export default class Map extends Component {
     }
 
     render() {
+      const lat = this.props.start ? this.props.start.lat : 48.781839;
+      const long = this.props.start ? this.props.start.lng : 9.177895;
         return (
             <MapView
                 style={styles.map}
                 onLongPress={this.onMapLongPress}
                 showsUserLocation={true}
-                followsUserLocation={true}
                 initialRegion={{
-                    latitude: 48.781839,
-                    longitude: 9.177895,
+                    latitude: lat,
+                    longitude: long,
                     latitudeDelta: 0.0922,
                     longitudeDelta: 0.0421,
                 }}
