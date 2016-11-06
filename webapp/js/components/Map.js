@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import MapView from 'react-native-maps';
 import {StyleSheet, View, Image} from 'react-native';
 import * as ActionFactory from '../actions/ActionFactory';
-import markerImg from '../../img/marker_icon.png';
+import markerImgOrange from '../../img/marker_icon_orange.png';
+import markerImgGreen from '../../img/marker_icon_green.png';
+import markerImgGrey from '../../img/marker_icon_grey.png';
 
 const styles = StyleSheet.create({
     map: {
@@ -27,11 +29,29 @@ export default class Map extends Component {
         )
     }
 
+    renderCurrent(current) {
+      if (!current) {
+        return;
+      }
+      const markerImg = current.selected ? markerImgGreen : markerImgGrey;
+      return (
+          <MapView.Marker
+              key={'current'}
+              image={markerImg}
+              title={'Selected destination'}
+              coordinate={{
+                  longitude: current.longitude,
+                  latitude: current.latitude
+              }}
+          />
+      )
+    }
+
     renderMarker(marker) {
         return (
             <MapView.Marker
                 key={marker.id}
-                image={markerImg}
+                image={markerImgOrange}
                 title={'Departure in 15 minutes'}
                 coordinate={{
                     longitude: marker.endLocation.longitude,
@@ -65,6 +85,7 @@ export default class Map extends Component {
         return (
             <MapView {...mapProperties}>
                 {this.props.markers.map(this.renderMarker)}
+                {this.renderCurrent(this.props.start)}
             </MapView>
         );
     }

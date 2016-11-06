@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import DestinationInput from '../components/DestinationInput.js';
+import { setLocation, unsetLocation } from '../actions/Geocoding.js';
 
 const propTypes = {
   offer: PropTypes.object
@@ -30,6 +31,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#00A0E1',
   },
+  buttonRed: {
+    alignItems: 'center',
+    backgroundColor: '#A4172E',
+  },
   buttonText: {
     flex: 1,
     height: 50,
@@ -47,20 +52,44 @@ class NavBar extends Component {
   }
 
   onPressButton() {
+    const { dispatch, current } = this.props;
+    if (!current) {
+      return;
+    }
+    if (current.selected) {
+      dispatch(unsetLocation())
+    } else {
+      dispatch(setLocation())
+    }
+  }
 
+  renderButton() {
+    const hasDestination = !!this.props.current;
+    const isSelected = this.props.current && this.props.current.selected;
+    let style = styles.buttonGray;
+    let text = 'FIND A RIDE';
+    if (hasDestination && isSelected) {
+      style = styles.buttonRed;
+      text = 'ABORT SEARCH';
+    } else if (hasDestination) {
+      style = styles.buttonBlue;
+    }
+    return (
+      <TouchableHighlight
+        style={ styles.button, style }
+        onPress={this.onPressButton.bind(this)}>
+        <Text style={styles.buttonText}>{text}</Text>
+      </TouchableHighlight>
+    );
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <TouchableHighlight
-          style={styles.button, this.props.hasDestination ? styles.buttonBlue : styles.buttonGray}
-          onPress={this.onPressButton}>
-          <Text style={styles.buttonText}>{'FIND A RIDE'}</Text>
-        </TouchableHighlight>
-        <DestinationInput current={this.props.current} dispatch={this.props.dispatch}/>
-      </View>
-    );
+      return (
+          <View style={styles.container}>
+              {this.renderButton()}
+              <DestinationInput current={this.props.current} dispatch={this.props.dispatch}/>
+          </View>
+      );
   }
 }
 
@@ -70,10 +99,8 @@ function mapStateToProps(state) {
   const { tripOffers, location} = state;
   const offers = tripOffers.offers;
   const current = location.current;
-  const hasDestination = !!current;
   return {
     offers,
-    hasDestination,
     current,
   };
 }

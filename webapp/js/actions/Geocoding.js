@@ -14,6 +14,19 @@ export function fetchLocation(address) {
     }
 };
 
+export function setLocation() {
+  return {
+    type: types.SET_LOCATION,
+  }
+}
+
+export function unsetLocation() {
+  return {
+    type: types.UNSET_LOCATION,
+  }
+}
+
+
 function receiveLocation(location) {
   return {
     type: types.RECEIVE_LOCATION,
