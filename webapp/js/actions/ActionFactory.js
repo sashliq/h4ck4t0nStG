@@ -9,8 +9,8 @@ export function fetchOffers() {
         dispatch(requestOffers());
         return fetch(buildPath('trip-offers/'))
             .then(response => response.json())
-            .then(json => dispatch(receiveOffers(json)));
-        // .catch(error => console.error(error));
+            .then(json => dispatch(receiveOffers(json)))
+            .catch(error => dispatch(receiveOffers([])));
     }
 }
 
