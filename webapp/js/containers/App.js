@@ -47,8 +47,9 @@ App.propTypes = propTypes;
 
 function mapStateToProps(state) {
     const {tripOffers} = state;
+    const {userReducer} = state;
     const offers = tripOffers.offers;
-    const users = tripOffers.users;
+    const users = userReducer.users;
     return {
         offers,
         users

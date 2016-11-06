@@ -2,7 +2,7 @@ import * as types from '../constants/ActionTypes';
 
 
 const initialState = {
-    user: []
+    users: []
 };
 
 export default function userReducer(state = initialState, action) {
