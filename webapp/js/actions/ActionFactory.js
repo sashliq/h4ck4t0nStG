@@ -2,6 +2,7 @@ import * as types from '../constants/ActionTypes';
 import {buildPath} from '../utils/path.js';
 import * as ObjectFactory from '../objects/ObjectFactory';
 
+import { receiveLocation } from './Geocoding.js';
 
 export function fetchOffers() {
     return (dispatch, getState) => {
@@ -58,7 +59,7 @@ export function createOffer(start, destination,props) {
             body: JSON.stringify(ObjectFactory.createNewTripOffer(start, destination,props.users[0]))
         })
             .then(response => response.json())
-            .then(offer => dispatch(addOffer(offer)))
+            .then(offer => dispatch(receiveLocation(offer.endLocation)))
             .catch(error => console.error(error));
     }
 }

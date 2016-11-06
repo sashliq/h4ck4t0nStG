@@ -27,7 +27,7 @@ export function unsetLocation() {
 }
 
 
-function receiveLocation(location) {
+export function receiveLocation(location) {
   return {
     type: types.RECEIVE_LOCATION,
     location
