@@ -1,5 +1,4 @@
-
-export function createNewTripOffer(start, destination) {
+export function createNewTripOffer(start, destination, owner) {
     return {
         "createdOn": {},
         "endLocation": {
@@ -11,7 +10,8 @@ export function createNewTripOffer(start, destination) {
             "latitude": start.latitude,
             "longitude": start.longitude,
             "rangeInMeters": 0
-        }
+        },
+        "owner": owner
     }
 
 }

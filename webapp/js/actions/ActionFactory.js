@@ -46,7 +46,8 @@ function requestOffers() {
 }
 
 
-export function createOffer(start, destination) {
+export function createOffer(start, destination,props) {
+    console.log(props);
     return (dispatch, getState) => {
         dispatch(createOfferRequest());
         return fetch(buildPath('trip-offers/'), {
@@ -55,7 +56,7 @@ export function createOffer(start, destination) {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(ObjectFactory.createNewTripOffer(start, destination))
+            body: JSON.stringify(ObjectFactory.createNewTripOffer(start, destination,props.users[0]))
         })
             .then(response => response.json())
             .then(offer => dispatch(addOffer(offer)))
