@@ -1,0 +1,24 @@
+version: '2'
+services:
+  database:
+    image: mysql
+    environment:
+     - MYSQL_USER=carshare
+     - MYSQL_PASSWORD=carshare
+     - MYSQL_DATABASE=carshare
+     - MYSQL_ROOT_PASSWORD=Password1
+    ports:
+     - "3306:3306"
+  ngrok:
+    image: wernight/ngrok
+    command: ngrok http 192.168.99.100:8082
+    ports:
+     - "4040:4040"
+    links:
+     - backend
+  backend:
+    build: carshare_backend
+    links:
+     - database
+    ports:
+     - "8082:8082"
