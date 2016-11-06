@@ -39,20 +39,28 @@ export default class Map extends Component {
     }
 
     render() {
-      const lat = this.props.start ? this.props.start.lat : 48.781839;
-      const long = this.props.start ? this.props.start.lng : 9.177895;
+        let mapProperties = {
+            style: styles.map,
+            onLongPress: this.onMapLongPress,
+            showsUserLocation: true,
+            initialRegion: {
+                latitude: 48.781839,
+                longitude: 9.177895,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+            },
+        };
+        if (this.props.start) {
+          mapProperties = Object.assign(mapProperties, {
+            region: {
+              latitudeDelta: 0.00922,
+              longitudeDelta: 0.00421,
+              ...this.props.start,
+            },
+          });
+        }
         return (
-            <MapView
-                style={styles.map}
-                onLongPress={this.onMapLongPress}
-                showsUserLocation={true}
-                initialRegion={{
-                    latitude: lat,
-                    longitude: long,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                }}
-            >
+            <MapView {...mapProperties}>
                 {this.props.markers.map(this.renderMarker)}
             </MapView>
         );

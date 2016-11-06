@@ -5,8 +5,11 @@ export function fetchLocation(address) {
   return dispatch => {
     return fetch(buildGeocodingPath(address))
       .then(response => response.json())
-      .then(result => result.status === 'OK' ? result.results : [])
-      .then(results => results.length > 0 ? dispatch(receiveLocation(results[0].geometry.location)) : dispatch(noLocationFound()))
+      .then(result => {
+        const results = result.status === 'OK' ? result.results : [];
+        const location = results.length > 0 ? results[0].geometry.location : null;
+        location ? dispatch(receiveLocation({ latitude: location.lat, longitude: location.lng })) : dispatch(noLocationFound());
+      })
       .catch(error => console.error(error));
     }
 };
