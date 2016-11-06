@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import MapView from 'react-native-maps';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Image} from 'react-native';
 import * as ActionFactory from '../actions/ActionFactory';
+import markerImg from '../../img/marker_icon.png';
 
 const styles = StyleSheet.create({
     map: {
@@ -30,6 +31,8 @@ export default class Map extends Component {
         return (
             <MapView.Marker
                 key={marker.id}
+                image={markerImg}
+                title={'Departure in 15 minutes'}
                 coordinate={{
                     longitude: marker.endLocation.longitude,
                     latitude: marker.endLocation.latitude
