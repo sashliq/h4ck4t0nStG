@@ -47,7 +47,6 @@ function requestOffers() {
 
 
 export function createOffer(start, destination,props) {
-    console.log(props);
     return (dispatch, getState) => {
         dispatch(createOfferRequest());
         return fetch(buildPath('trip-offers/'), {
